@@ -17,7 +17,9 @@ class Login extends React.Component{
 
     onSubmit = () => {
         const { addUserData } = this.props;
-        const { username } = this.state;
+        const { username, password } = this.state;
+        
+        if(username && password){
             addUserData({
                 username, 
                 userimage: Faker.internet.avatar(),
@@ -26,6 +28,7 @@ class Login extends React.Component{
                 userdetail: Faker.lorem.sentence(30), 
             });
             this.props.history.push(`/${this.state.username}`);
+        }
     }
 
     onChange(e){

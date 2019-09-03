@@ -22,6 +22,7 @@ class EditAccount extends React.Component{
         this.setState({[name]: value});
     }
 
+    // Redirect to Feed Layout
     gotoFeeds = () => {
         const {userData} = this.props;
         this.props.history.push({

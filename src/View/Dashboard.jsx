@@ -11,17 +11,19 @@ class Dashboard extends React.Component{
     constructor(props) {
         super(props)
         this.state = {
-            feeds: [],
+            feeds: [], // For Feeds Array
             isLoading: false,
             filtertext: '',
             connectionFiltertext: '',
-            connections: []
+            connections: [], // For Connections Array
         }
 
         this.onChange = this.onChange.bind(this);
     }
 
     componentDidMount() {
+
+        // For Scrolling 
         this.refs.iScroll.addEventListener("scroll", () => {
           if (
             this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight >=
@@ -46,6 +48,7 @@ class Dashboard extends React.Component{
         this.loadData();
     }
 
+    // Load More Data on Scroll
     loadData(){
         this.setState({
             isLoading: true
@@ -69,6 +72,7 @@ class Dashboard extends React.Component{
         }, 1000);
     }
 
+    // Redirect to Account Setting
     gotoAccountSetting = () => {
         const {userData} = this.props;
         addUserData({
@@ -111,10 +115,8 @@ class Dashboard extends React.Component{
 
         if(lowercasedFilter !== ''){
             let filteredData = connections.filter(connection => {
-                console.log(connection);
                 return Object.keys(connection).some(key =>
-                    console.log(key)
-                    //connection[key].toLowerCase().includes(lowercasedFilter)
+                    connection[key].toLowerCase().includes(lowercasedFilter)
                 );
             });
             this.setState({
@@ -170,7 +172,7 @@ class Dashboard extends React.Component{
                         </div>
                         <div className="col-12 col-xl-3">
                             <div className="right-panel-div">
-                                <div className="col-sm-3 col-md-3 rightSearchForm">
+                                {/* <div className="col-sm-3 col-md-3 rightSearchForm">
                                     <form className="navbar-form" role="search">
                                         <div className="input-group">
                                             <input type="text" className="form-control" placeholder="Search" name="connectionFiltertext" onChange={this.onChange} />
@@ -179,7 +181,7 @@ class Dashboard extends React.Component{
                                             </div>
                                         </div>  
                                     </form>
-                                </div>
+                                </div> */}
                                 <div className="right-main">
                                     <div className="text-center"><p>My Connections</p></div>
                                     <div>
